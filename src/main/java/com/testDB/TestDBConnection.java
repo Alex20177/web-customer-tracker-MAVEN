@@ -20,8 +20,8 @@ public class TestDBConnection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String user="springstudent";
-		String pass="springstudent1";
-		String url="jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false";
+		String pass="springstudent";
+		String url="jdbc:mysql://192.168.99.100:3306/web_customer_tracker?useSSL=false";
 		String drive="com.mysql.jdbc.Driver";
 		PrintWriter out = response.getWriter();
 		

@@ -13,7 +13,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<spring.version>3.1.0.RELEASE</spring.version>
+		<spring.version>5.0.2.RELEASE</spring.version>
 		<cglib.version>2.2.2</cglib.version>
 	</properties>
 
@@ -75,12 +75,27 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.9-rc</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.20</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
+		 
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>
+	 	
+		<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
 		</dependency>
 
 	</dependencies>
