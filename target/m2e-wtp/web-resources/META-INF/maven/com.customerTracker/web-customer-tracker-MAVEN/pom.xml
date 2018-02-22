@@ -15,6 +15,7 @@
 		<java.version>1.8</java.version>
 		<spring.version>5.0.2.RELEASE</spring.version>
 		<cglib.version>2.2.2</cglib.version>
+		<hibernate.version>5.3.0.CR1</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -84,13 +85,14 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
-		 
+	
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
-	 	
+
+
 		<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
 		<dependency>
 			<groupId>c3p0</groupId>

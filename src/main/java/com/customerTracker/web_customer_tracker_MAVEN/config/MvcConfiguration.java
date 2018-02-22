@@ -2,25 +2,23 @@ package com.customerTracker.web_customer_tracker_MAVEN.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
-
-import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-//import com.mysql.cj.xdevapi.SessionFactory;
 
 @Configuration //No XML configuration
 @ComponentScan(basePackages="com.customerTracker")//Scan all the object into all packages.
 @EnableWebMvc //@EnableWebMvc is equivalent to <mvc:annotation-driven />.
+@EnableTransactionManagement
 public class MvcConfiguration implements WebMvcConfigurer {
 
 	@Bean //Define Spring MVC view resolver
@@ -72,8 +70,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
 	public LocalSessionFactoryBean sessionFactory() {
 		
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		DataSource dataSource = myDataSource();
-		sessionFactory.setDataSource(dataSource);
+		sessionFactory.setDataSource(myDataSource());
 		sessionFactory.setPackagesToScan(new String[] { "com.customerTracker" });
 		
 		Properties pro = new Properties();
@@ -87,28 +84,12 @@ public class MvcConfiguration implements WebMvcConfigurer {
 	}//Close sessionFactory method.
 	
 	@Bean
-	public void myTransactionManager() {
+	public HibernateTransactionManager myTransactionManager() {
 		
 		HibernateTransactionManager transactionManager=new HibernateTransactionManager();
-		LocalSessionFactoryBean mySessionFactory=sessionFactory();
-		
-		//transactionManager.setSessionFactory(mySessionFactory);
+		transactionManager.setSessionFactory(sessionFactory().getObject());
+		return transactionManager;
 		
 	}//Close myTransactionManager method.
-	/*
-	     <!-- Step 3: Setup Hibernate transaction manager -->
-	<bean id="myTransactionManager"
-            class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-	 */
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }//Close MvcConfiguration
